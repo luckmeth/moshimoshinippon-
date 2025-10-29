@@ -100,7 +100,7 @@ export function Contact({ onConsultationClick }: ContactProps) {
             <p className="text-gray-300 mb-8"> Fill out our consultation form and our team will get back to you within 24 hours to discuss your visa needs.</p>
             <div className="mt-8 rounded-lg overflow-hidden">
               <img
-                src="public/484971539_987967740103641_4819018956496324160_n.jpg"
+                src="public/ds.png"
                 alt="Tokyo cityscape with Mount Fuji"
                 className="w-full h-64 object-cover"
               />
@@ -191,7 +191,7 @@ Once selected, you’ll face an online interview, and only then does the visa pr
                 </a>
 
                 <a
-                  href="https://www.instagram.com/moshimoshi_nippon/"
+                  href="https://www.instagram.com/mosh.imoshinippon/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative"
@@ -205,7 +205,7 @@ Once selected, you’ll face an online interview, and only then does the visa pr
                 </a>
 
                 <a
-                  href="https://www.tiktok.com/@moshimoshi_nippon"
+                  href="https://www.tiktok.com/@moshi_moshi_nippon?lang=en"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative"
@@ -225,7 +225,7 @@ Once selected, you’ll face an online interview, and only then does the visa pr
                 </a>
 
                 <a
-                  href="mailto:moshimoshinippon10@gmail.com"
+                  href="moshimoshinippon10@gmail.com"
                   className="group relative"
                 >
                   <div className="bg-gradient-to-br from-red-600 to-red-800 p-4 rounded-xl shadow-lg hover:shadow-2xl hover:shadow-red-600/50 transition-all duration-300 hover:scale-110">
