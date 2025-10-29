@@ -98,11 +98,11 @@ export function Contact({ onConsultationClick }: ContactProps) {
           <div className="bg-gradient-to-br from-black to-gray-900 p-8 rounded-xl border-2 border-red-600">
             <h3 className="text-3xl font-bold text-white mb-6">Request a Consultation</h3> 
             <p className="text-gray-300 mb-8"> Fill out our consultation form and our team will get back to you within 24 hours to discuss your visa needs.</p>
-            <div className="mt-8 rounded-lg overflow-hidden">
+            <div className="mt-8 rounded-lg overflow-hidden border-2 border-red-600">
               <img
-                src="/logo.png"
-                alt="Tokyo cityscape with Mount Fuji"
-                className="w-full h-64 object-cover"
+                src="ds.png"
+                alt="Buddima Ishara Ramanayake - Senior Visa Consultant"
+                className="w-full h-80 object-cover"
               />
             </div>
             <br />
@@ -111,7 +111,7 @@ export function Contact({ onConsultationClick }: ContactProps) {
 Senior Visa Consultant & Director
 
 After you submit your visa consultation request, Mr. Buddima Ishara Ramanayake personally reviews your profile and guides you through each step — from document preparation to matching with suitable Japanese schools or companies.
-Once selected, you’ll face an online interview, and only then does the visa process officially begin — fully transparent, no hidden fees, and complete professional guidance.
+Once selected, you'll face an online interview, and only then does the visa process officially begin — fully transparent, no hidden fees, and complete professional guidance.
 <br />
 <br />
 ようこそ、モシモシニッポンへ。
@@ -225,7 +225,7 @@ Once selected, you’ll face an online interview, and only then does the visa pr
                 </a>
 
                 <a
-                  href="moshimoshinippon10@gmail.com"
+                  href="mailto:moshimoshinippon10@gmail.com"
                   className="group relative"
                 >
                   <div className="bg-gradient-to-br from-red-600 to-red-800 p-4 rounded-xl shadow-lg hover:shadow-2xl hover:shadow-red-600/50 transition-all duration-300 hover:scale-110">
@@ -243,3 +243,5 @@ Once selected, you’ll face an online interview, and only then does the visa pr
     </section>
   );
 }
+
+export default Contact;
