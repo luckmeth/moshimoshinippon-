@@ -100,7 +100,7 @@ export function Contact({ onConsultationClick }: ContactProps) {
             <p className="text-gray-300 mb-8"> Fill out our consultation form and our team will get back to you within 24 hours to discuss your visa needs.</p>
             <div className="mt-8 rounded-lg overflow-hidden">
               <img
-                src="public/ds.png"
+                src="public/ds.jpg"
                 alt="Tokyo cityscape with Mount Fuji"
                 className="w-full h-64 object-cover"
               />
