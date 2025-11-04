@@ -1,4 +1,11 @@
+# robots.txt for Moshi Moshi Nippon Visa Consultants
 User-agent: *
 Allow: /
 
-Sitemap: https://moshimoshinippon.vercel.app/sitemap.xml
+# Disallow unnecessary files or dev directories
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /assets/
+
+# Sitemap location
+Sitemap: https://moshimoshinippon.com/sitemap.xml
