@@ -80,7 +80,7 @@ export function Contact({ onConsultationClick }: ContactProps) {
               className="block rounded-xl overflow-hidden border-2 border-red-600 hover:border-red-500 transition-all duration-300 shadow-lg hover:shadow-red-600/30"
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.798654458267!2d79.88825!3d6.91522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTQnNTQuOCJOIDc5wrA1MycxNy43IkU!5e0!3m2!1sen!2slk!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.5528122274471!2d79.89833700853599!3d6.909130590148866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2591e6505f6c1%3A0x40ef4d91854a7a56!2sMoshi%20Moshi%20Nippon%20(PVT)%20Limited!5e0!3m2!1sen!2slk!4v1762244367346!5m2!1sen!2slk"
                 width="100%"
                 height="300"
                 style={{ border: 0 }}
@@ -135,7 +135,7 @@ Once selected, you'll face an online interview, and only then does the visa proc
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             {/* About Column */}
             <div>
-              <h4 className="text-2xl font-bold text-black mb-4">Moshi Moshi Nippon</h4>
+              <h4 className="text-2xl font-bold text-black mb-4">Moshi Moshi Nippon(PVT)Limited</h4>
               <p className="text-gray-600 mb-4">
                 Your trusted partner for Japan visa consultation services since 2016.
               </p>
