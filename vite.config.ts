@@ -2,21 +2,21 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import sitemap from 'vite-plugin-sitemap';
 
-
 export default defineConfig({
   plugins: [
     react(),
     sitemap({
       hostname: 'https://moshimoshinippon.com',
       dynamicRoutes: [
-        '/', // Home
-        '/about',
-        '/contact',
-        '/japan-visa',
-        '/services',
+        '/',           // Home
+        '/about',      // About page
+        '/contact',    // Contact page
+        '/japan-visa', // Japan Visa page
+        '/services',   // Services page
       ],
-      lastmodDateOnly: false,
-      readable: true,
+      readable: true,     // Pretty XML formatting
+      changefreq: 'weekly',
+      priority: 0.8,
     }),
   ],
   optimizeDeps: {
@@ -24,7 +24,7 @@ export default defineConfig({
   },
   server: {
     hmr: {
-      overlay: true, // shows overlay errors while developing
+      overlay: true, // Show overlay errors during dev
     },
   },
   build: {
@@ -36,7 +36,6 @@ export default defineConfig({
       },
     },
   },
-  // ✅ Important for Vercel: Ensures 404s redirect to index.html for React Router
   esbuild: {
     jsxInject: `import React from 'react'`,
   },
