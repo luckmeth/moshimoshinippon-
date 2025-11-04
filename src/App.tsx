@@ -9,7 +9,6 @@ import { Contact } from './components/Contact';
 import { InquiryForm } from './components/InquiryForm';
 import { AdminLogin, isAdminAuthenticated, adminLogout } from './components/admin/AdminLogin';
 import { AdminDashboard } from './components/admin/AdminDashboard';
-import { Analytics } from '@vercel/analytics/react'; // ✅ Added here
 
 function MainContent() {
   const [showInquiryForm, setShowInquiryForm] = useState(false);
@@ -60,7 +59,7 @@ function MainContent() {
     setIsAdminAuth(false);
   };
 
-  // ✅ Admin panel routing stays untouched
+  // If accessing admin panel
   if (window.location.pathname === '/admin') {
     if (!isAdminAuth) {
       return <AdminLogin onLoginSuccess={handleAdminLoginSuccess} />;
@@ -68,7 +67,6 @@ function MainContent() {
     return <AdminDashboard onLogout={handleAdminLogout} />;
   }
 
-  // ✅ Regular user pages
   return (
     <div className="min-h-screen bg-white">
       <Navbar onNavigate={handleNavigate} />
@@ -107,9 +105,7 @@ function MainContent() {
               <p className="text-gray-400">
                 &copy; {new Date().getFullYear()} Moshi Moshi Nippon. All rights reserved.
               </p>
-              <p className="text-sm text-gray-500 mt-1">
-                Design and implementation credits to MJ Technology Solutions
-              </p>
+              <p className="text-sm text-gray-500 mt-1">Design and implimentation credits to MJ Technology Solutions</p>
             </div>
           </div>
         </div>
@@ -124,7 +120,6 @@ function App() {
   return (
     <AuthProvider>
       <MainContent />
-      <Analytics /> {/* ✅ Vercel Analytics tracking globally */}
     </AuthProvider>
   );
 }
