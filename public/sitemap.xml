@@ -1,34 +1,429 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- Home Page -->
+  <!-- ==================== HOME PAGE ==================== -->
   <url>
     <loc>https://moshimoshinippon.com/</loc>
-    <lastmod>2025-11-04</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://moshimoshinippon.com/logo.png</image:loc>
+      <image:title>Moshi Moshi Nippon - Japan Visa Consultants Sri Lanka</image:title>
+      <image:caption>Leading Japan visa consultants in Sri Lanka</image:caption>
+    </image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moshimoshinippon.com/" />
   </url>
 
-  <!-- Example Pages (add real ones) -->
+  <!-- ==================== CORE SERVICE PAGES (HIGHEST PRIORITY) ==================== -->
+  
+  <url>
+    <loc>https://moshimoshinippon.com/japan-visa-sri-lanka</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moshimoshinippon.com/japan-visa-sri-lanka" />
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/apply-japan-visa-online</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moshimoshinippon.com/apply-japan-visa-online" />
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/student-visa-japan</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moshimoshinippon.com/student-visa-japan" />
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/japan-work-visa</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moshimoshinippon.com/japan-work-visa" />
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/japan-tourist-visa</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.94</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://moshimoshinippon.com/japan-tourist-visa" />
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/japan-business-visa</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/japan-dependent-visa</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- ==================== MAIN NAVIGATION PAGES ==================== -->
+  
   <url>
     <loc>https://moshimoshinippon.com/about</loc>
-    <lastmod>2025-11-04</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://moshimoshinippon.com/services</loc>
-    <lastmod>2025-11-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
   </url>
 
   <url>
     <loc>https://moshimoshinippon.com/contact</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+  </url>
+
+  <!-- ==================== INFORMATION & REQUIREMENT PAGES ==================== -->
+  
+  <url>
+    <loc>https://moshimoshinippon.com/visa-requirements</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.87</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/required-documents</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.86</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/visa-fees</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.84</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/processing-time</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.83</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/coe-application</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- ==================== SUPPORT & FAQ PAGES ==================== -->
+  
+  <url>
+    <loc>https://moshimoshinippon.com/faq</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/how-to-apply</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/application-checklist</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/testimonials</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.78</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/success-stories</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.77</priority>
+  </url>
+
+  <!-- ==================== LOCATION PAGES (LOCAL SEO) ==================== -->
+  
+  <url>
+    <loc>https://moshimoshinippon.com/japan-visa-colombo</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.86</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/japan-visa-kandy</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/japan-visa-galle</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.73</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/japan-visa-jaffna</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+  </url>
+
+  <!-- ==================== UNIVERSITY & INSTITUTION PAGES ==================== -->
+  
+  <url>
+    <loc>https://moshimoshinippon.com/japanese-language-schools</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.84</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/japanese-universities</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.83</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/vocational-schools-japan</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.81</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/scholarship-programs</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- ==================== BLOG/GUIDES SECTION ==================== -->
+  
+  <url>
+    <loc>https://moshimoshinippon.com/blog</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/blog/complete-guide-japan-visa-sri-lanka-2025</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/blog/japan-student-visa-requirements</loc>
     <lastmod>2025-11-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.84</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/blog/japan-work-visa-guide-sri-lankans</loc>
+    <lastmod>2025-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.83</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/blog/how-long-japan-visa-processing</loc>
+    <lastmod>2025-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/blog/japan-embassy-colombo-visa-process</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.81</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/blog/cost-studying-japan</loc>
+    <lastmod>2025-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/blog/japan-tourist-visa-rejection-reasons</loc>
+    <lastmod>2025-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.79</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/blog/best-time-apply-japan-visa</loc>
+    <lastmod>2025-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.78</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/blog/japan-visa-interview-tips</loc>
+    <lastmod>2025-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.77</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/blog/part-time-work-japan-student-visa</loc>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.76</priority>
+  </url>
+
+  <!-- ==================== SPECIALIZED SERVICES ==================== -->
+  
+  <url>
+    <loc>https://moshimoshinippon.com/visa-renewal</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.76</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/visa-extension</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/document-translation</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/flight-booking-assistance</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/accommodation-support</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- ==================== LEGAL & POLICY PAGES ==================== -->
+  
+  <url>
+    <loc>https://moshimoshinippon.com/privacy-policy</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/terms-and-conditions</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/refund-policy</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.35</priority>
+  </url>
+
+  <!-- ==================== COMPARISON & VS PAGES ==================== -->
+  
+  <url>
+    <loc>https://moshimoshinippon.com/why-choose-us</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.79</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/our-success-rate</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.74</priority>
+  </url>
+
+  <!-- ==================== RESOURCES & DOWNLOADS ==================== -->
+  
+  <url>
+    <loc>https://moshimoshinippon.com/resources</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.71</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/download-forms</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/useful-links</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+
+  <!-- ==================== BOOKING & CONSULTATION ==================== -->
+  
+  <url>
+    <loc>https://moshimoshinippon.com/book-consultation</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://moshimoshinippon.com/track-application</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.68</priority>
   </url>
 
 </urlset>
