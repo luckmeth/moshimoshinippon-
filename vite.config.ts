@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     sitemap({
       hostname: 'https://moshimoshinippon.com',
-      dynamicRoutes: [
+      urls: [
         '/',           // Home
         '/about',      // About page
         '/contact',    // Contact page
