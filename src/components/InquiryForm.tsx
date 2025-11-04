@@ -1,13 +1,7 @@
 import { useState } from 'react';
 import { X, Send } from 'lucide-react';
 import { supabase } from '../lib/supabase';
-import { Helmet } from 'react-helmet-async';
 
-<Helmet>
-  <title>Your Page Title | Moshi Moshi Nippon</title>
-  <meta name="description" content="Page specific description" />
-  <link rel="canonical" href="https://moshimoshinippon.com/current-page" />
-</Helmet>
 
 interface InquiryFormProps {
   onClose: () => void;
