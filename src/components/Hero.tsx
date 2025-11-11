@@ -1,28 +1,86 @@
-import { ArrowRight, X, Image } from 'lucide-react';
-import { useState } from 'react';
-
+import { ArrowRight, X, Image, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { supabase } from '../lib/supabase';
 
 interface HeroProps {
   onGetStarted: () => void;
 }
 
+interface GalleryImage {
+  id: string;
+  image_url: string;
+  caption: string;
+  category: string;
+  created_at: string;
+}
+
 export function Hero({ onGetStarted }: HeroProps) {
   const [showGallery, setShowGallery] = useState(false);
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
-  const galleryImages = [
-    { src: '1.jpg', alt: 'Team photo' },
-    { src: '2.jpg', alt: 'Office branding' },
-    { src: '3.jpg', alt: 'Opening ceremony' },
-    { src: '4.jpg', alt: 'Teaching session' },
-    { src: '5.jpg', alt: 'Japan checkin' },
-    { src: '6.jpg', alt: 'Presentation' },
-    { src: '7.jpg', alt: 'Team partnership' },
-    { src: '8.jpg', alt: 'Team meeting' },
-    { src: '9.jpg', alt: 'Success certificate' },
-    { src: '12.jpg', alt: 'Airport departure' },
-    { src: '10.jpg', alt: 'Certificate ceremony' },
-  ];
+  // Load gallery images from database
+  useEffect(() => {
+    if (showGallery) {
+      loadGalleryImages();
+    }
+  }, [showGallery]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedImage === null) return;
+      
+      if (e.key === 'ArrowLeft') {
+        navigateImage('prev');
+      } else if (e.key === 'ArrowRight') {
+        navigateImage('next');
+      } else if (e.key === 'Escape') {
+        setSelectedImage(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedImage]);
+
+  const loadGalleryImages = async () => {
+    setLoading(true);
+    try {
+      const { data, error } = await supabase
+        .from('gallery_images')
+        .select('*')
+        .order('created_at', { ascending: false });
+      
+      if (error) throw error;
+      if (data) setGalleryImages(data);
+    } catch (error) {
+      console.error('Error loading gallery:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Get unique categories
+  const categories = ['all', ...Array.from(new Set(galleryImages.map(img => img.category)))];
+
+  // Filter images by category
+  const filteredImages = selectedCategory === 'all' 
+    ? galleryImages 
+    : galleryImages.filter(img => img.category === selectedCategory);
+
+  // Navigate between images in lightbox
+  const navigateImage = (direction: 'prev' | 'next') => {
+    if (selectedImage === null) return;
+    
+    const newIndex = direction === 'next' 
+      ? (selectedImage + 1) % filteredImages.length
+      : (selectedImage - 1 + filteredImages.length) % filteredImages.length;
+    
+    setSelectedImage(newIndex);
+  };
 
   return (
     <>
@@ -101,59 +159,179 @@ export function Hero({ onGetStarted }: HeroProps) {
         <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm overflow-y-auto">
           <div className="min-h-screen p-4 md:p-8">
             <div className="max-w-7xl mx-auto">
-              <div className="flex items-center justify-between mb-8 sticky top-0 bg-black/80 backdrop-blur-md p-4 rounded-lg">
-                <h2 className="text-3xl font-bold text-white">Our Gallery</h2>
+              {/* Header */}
+              <div className="flex items-center justify-between mb-8 sticky top-0 bg-black/80 backdrop-blur-md p-4 rounded-lg z-10">
+                <div>
+                  <h2 className="text-3xl font-bold text-white">Our Gallery</h2>
+                  <p className="text-gray-400 text-sm mt-1">
+                    {loading ? 'Loading...' : `${filteredImages.length} ${filteredImages.length === 1 ? 'image' : 'images'}`}
+                  </p>
+                </div>
                 <button
-                  onClick={() => setShowGallery(false)}
+                  onClick={() => {
+                    setShowGallery(false);
+                    setSelectedCategory('all');
+                  }}
                   className="text-white hover:text-red-600 transition-colors p-2 hover:bg-white/10 rounded-lg"
                 >
                   <X size={32} />
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {galleryImages.map((image, index) => (
-                  <div
-                    key={index}
-                    onClick={() => setSelectedImage(index)}
-                    className="relative group cursor-pointer overflow-hidden rounded-lg aspect-square bg-gray-800"
-                  >
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-0 left-0 right-0 p-4">
-                        <p className="text-white font-semibold">{image.alt}</p>
+              {/* Category Filter */}
+              {!loading && categories.length > 1 && (
+                <div className="flex flex-wrap gap-3 mb-8 justify-center">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => setSelectedCategory(category)}
+                      className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
+                        selectedCategory === category
+                          ? 'bg-red-600 text-white shadow-lg'
+                          : 'bg-white/10 text-white hover:bg-white/20'
+                      }`}
+                    >
+                      {category.charAt(0).toUpperCase() + category.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* Loading State */}
+              {loading && (
+                <div className="text-center py-20">
+                  <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-red-600 mx-auto mb-4"></div>
+                  <p className="text-white text-lg">Loading gallery...</p>
+                </div>
+              )}
+
+              {/* Empty State */}
+              {!loading && filteredImages.length === 0 && (
+                <div className="text-center py-20">
+                  <Image size={64} className="mx-auto text-gray-600 mb-4" />
+                  <p className="text-white text-xl mb-2">No images found</p>
+                  <p className="text-gray-400">Check back soon for updates!</p>
+                </div>
+              )}
+
+              {/* Gallery Grid */}
+              {!loading && filteredImages.length > 0 && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {filteredImages.map((image, index) => (
+                    <div
+                      key={image.id}
+                      onClick={() => setSelectedImage(index)}
+                      className="relative group cursor-pointer overflow-hidden rounded-xl aspect-square bg-gray-800 shadow-xl hover:shadow-2xl transition-all duration-300"
+                    >
+                      <img
+                        src={image.image_url}
+                        alt={image.caption || 'Gallery image'}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                      {/* Overlay with caption */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute bottom-0 left-0 right-0 p-6">
+                          {image.caption && (
+                            <p className="text-white font-semibold text-lg mb-2">{image.caption}</p>
+                          )}
+                          {image.category && (
+                            <span className="inline-block px-3 py-1 bg-red-600 text-white text-xs rounded-full capitalize">
+                              {image.category}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      {/* Zoom indicator */}
+                      <div className="absolute top-4 right-4 bg-black/50 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                        </svg>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
       )}
 
       {/* Lightbox for Selected Image */}
-      {selectedImage !== null && (
+      {selectedImage !== null && filteredImages[selectedImage] && (
         <div
           className="fixed inset-0 z-[60] bg-black/98 flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
         >
+          {/* Close button */}
           <button
             onClick={() => setSelectedImage(null)}
-            className="absolute top-4 right-4 text-white hover:text-red-600 transition-colors p-2 hover:bg-white/10 rounded-lg"
+            className="absolute top-4 right-4 text-white hover:text-red-600 transition-colors p-3 hover:bg-white/10 rounded-lg z-10"
           >
             <X size={32} />
           </button>
-          <img
-            src={galleryImages[selectedImage].src}
-            alt={galleryImages[selectedImage].alt}
-            className="max-w-full max-h-[90vh] object-contain rounded-lg"
-            onClick={(e) => e.stopPropagation()}
-          />
+
+          {/* Navigation buttons */}
+          {filteredImages.length > 1 && (
+            <>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigateImage('prev');
+                }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-red-600 transition-colors p-3 hover:bg-white/10 rounded-lg z-10"
+              >
+                <ChevronLeft size={40} />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigateImage('next');
+                }}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-red-600 transition-colors p-3 hover:bg-white/10 rounded-lg z-10"
+              >
+                <ChevronRight size={40} />
+              </button>
+            </>
+          )}
+
+          {/* Image counter */}
+          <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-lg">
+            <span className="text-white font-semibold">
+              {selectedImage + 1} / {filteredImages.length}
+            </span>
+          </div>
+
+          {/* Image and caption */}
+          <div className="max-w-7xl w-full" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={filteredImages[selectedImage].image_url}
+              alt={filteredImages[selectedImage].caption || 'Gallery image'}
+              className="max-w-full max-h-[80vh] object-contain rounded-lg mx-auto shadow-2xl"
+            />
+            {/* Caption below image */}
+            {(filteredImages[selectedImage].caption || filteredImages[selectedImage].category) && (
+              <div className="mt-6 text-center bg-black/50 backdrop-blur-sm rounded-lg p-4 mx-auto max-w-2xl">
+                {filteredImages[selectedImage].caption && (
+                  <p className="text-white text-xl font-semibold mb-2">
+                    {filteredImages[selectedImage].caption}
+                  </p>
+                )}
+                {filteredImages[selectedImage].category && (
+                  <span className="inline-block px-4 py-1 bg-red-600 text-white text-sm rounded-full capitalize">
+                    {filteredImages[selectedImage].category}
+                  </span>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Keyboard hint */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-lg">
+            <p className="text-white text-sm">
+              Use ← → arrows to navigate • ESC to close
+            </p>
+          </div>
         </div>
       )}
     </>
