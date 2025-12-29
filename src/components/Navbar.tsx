@@ -302,12 +302,12 @@ export function Navbar({ onNavigate }: NavbarProps) {
                   
                   {/* Christmas hat on logo */}
                   <div className="absolute -top-1 -right-1 text-2xl ornament-swing">
-                    🎅
+                    
                   </div>
                   
                   {/* Gift badge */}
                   <div className="absolute -bottom-1 -right-1 bg-gradient-to-r from-red-600 to-green-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg ornament-swing" style={{ animationDelay: '0.5s' }}>
-                    🎄
+                    
                   </div>
                 </div>
               </div>
