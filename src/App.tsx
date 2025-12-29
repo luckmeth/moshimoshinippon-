@@ -7,11 +7,13 @@ import { Services } from './components/Services';
 import { About } from './components/About';
 import { Contact } from './components/Contact';
 import { InquiryForm } from './components/InquiryForm';
+import { Chatbot, ChatButton } from './components/Chatbot';
 import { AdminLogin, isAdminAuthenticated, adminLogout } from './components/admin/AdminLogin';
 import { AdminDashboard } from './components/admin/AdminDashboard';
 
 function MainContent() {
   const [showInquiryForm, setShowInquiryForm] = useState(false);
+  const [showChatbot, setShowChatbot] = useState(false);
   const [isAdminAuth, setIsAdminAuth] = useState(false);
   
   const homeRef = useRef<HTMLDivElement>(null);
@@ -105,13 +107,20 @@ function MainContent() {
               <p className="text-gray-400">
                 &copy; {new Date().getFullYear()} Moshi Moshi Nippon. All rights reserved.
               </p>
-              <p className="text-sm text-gray-500 mt-1">Design and implimentation credits to MJ Technology Solutions</p>
+              <p className="text-sm text-gray-500 mt-1">Design and implementation credits to MJ Technology Solutions</p>
             </div>
           </div>
         </div>
       </footer>
 
+      {/* Inquiry Form Modal */}
       {showInquiryForm && <InquiryForm onClose={() => setShowInquiryForm(false)} />}
+
+      {/* AI Chatbot */}
+      <Chatbot isOpen={showChatbot} onClose={() => setShowChatbot(false)} />
+      
+      {/* Floating Chat Button - Only show when chatbot is closed */}
+      {!showChatbot && <ChatButton onClick={() => setShowChatbot(true)} />}
     </div>
   );
 }
