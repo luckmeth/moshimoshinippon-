@@ -80,11 +80,11 @@ export function About() {
             <div className="absolute inset-0 bg-red-600 rounded-2xl blur-3xl opacity-20"></div>
             
             {/* Video Container */}
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-6 border-red-600">
+            <div className="relative rounded-10xl overflow-hidden shadow-10xl border-1 border-red-600">
               <video
                 ref={videoRef}
                 className="w-half h-half object-cover"
-                poster=""
+                poster="/516813976_1072100705023677_7277441891721048074_n.jpg"
                 loop
                 playsInline
               >
@@ -95,7 +95,7 @@ export function About() {
                   Place your video in: public/videos/about-video.mp4
                   Then use: /videos/about-video.mp4
                 */}
-                <source src="/visa.mp4" type="video/mp4" />
+                <source src="/public/visa.mp4" type="video/mp4" />
                 
                 {/* 
                   Option 2: Assets folder (for bundled assets)
