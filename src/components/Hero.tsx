@@ -219,35 +219,6 @@ export function Hero({ onGetStarted }: HeroProps) {
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-600 rounded-full blur-3xl"></div>
         </div>
 
-        {/* New Year Banner */}
-        {showNewYearBanner && (
-          <div className="absolute top-24 left-0 right-0 z-20">
-            <div className="max-w-7xl mx-auto px-4">
-              <div className="bg-gradient-to-r from-red-600 via-white to-red-600 p-1 rounded-lg shadow-2xl animate-pulse-glow">
-                <div className="bg-black rounded-lg px-6 py-4 flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <Sparkles className="text-red-600 animate-float" size={24} />
-                    <div>
-                      <p className="text-white font-bold text-lg md:text-xl shimmer-text">
-                        🎊 Happy New Year 2025! 🎊
-                      </p>
-                      <p className="text-gray-300 text-sm">
-                        新年おめでとうございます - Wishing you success in Japan!
-                      </p>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => setShowNewYearBanner(false)}
-                    className="text-white hover:text-red-600 transition-colors ml-4"
-                  >
-                    <X size={20} />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
           <div className="mb-8">
             <img src="/logo.png" alt="Moshi Moshi Nippon" className="h-40 w-auto mx-auto mb-6 animate-float" />
