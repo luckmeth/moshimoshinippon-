@@ -132,13 +132,16 @@ export function Hero({ onGetStarted }: HeroProps) {
     return () => clearInterval(timer);
   }, []);
 
-  // Track mouse position for parallax effect
+  // Track mouse position for parallax effect (desktop only)
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20,
-      });
+      // Only enable parallax on desktop (screens wider than 768px)
+      if (window.innerWidth > 768) {
+        setMousePosition({
+          x: (e.clientX / window.innerWidth - 0.5) * 20,
+          y: (e.clientY / window.innerHeight - 0.5) * 20,
+        });
+      }
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -543,19 +546,21 @@ export function Hero({ onGetStarted }: HeroProps) {
               <img
                 src={img}
                 alt={`Japan ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
                 style={{
                   animation: index === currentSlide ? 'slideshow 6s ease-in-out' : 'none',
+                  objectPosition: 'center center',
                 }}
+                loading={index === 0 ? 'eager' : 'lazy'}
               />
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
+              {/* Gradient overlay - stronger on mobile */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90 md:from-black/70 md:via-black/50 md:to-black/80"></div>
             </div>
           ))}
         </div>
 
-        {/* Futuristic Grid Overlay */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
+        {/* Futuristic Grid Overlay - Hidden on mobile for performance */}
+        <div className="absolute inset-0 opacity-20 pointer-events-none hidden md:block">
           <div 
             className="absolute inset-0" 
             style={{
@@ -570,16 +575,16 @@ export function Hero({ onGetStarted }: HeroProps) {
           ></div>
         </div>
 
-        {/* Scanline Effect */}
-        <div className="absolute inset-0 pointer-events-none scanline-effect"></div>
+        {/* Scanline Effect - Hidden on mobile */}
+        <div className="absolute inset-0 pointer-events-none scanline-effect hidden md:block"></div>
 
-        {/* Floating Particles */}
-        {hasLoaded && [...Array(30)].map((_, i) => (
+        {/* Floating Particles - Reduced on mobile */}
+        {hasLoaded && [...Array(window.innerWidth > 768 ? 30 : 10)].map((_, i) => (
           <Particle key={`particle-${i}`} delay={i * 0.1} index={i} />
         ))}
 
-        {/* Animated Clouds */}
-        {hasLoaded && (
+        {/* Animated Clouds - Hidden on mobile */}
+        {hasLoaded && window.innerWidth > 768 && (
           <>
             <Cloud delay={0} position={20} />
             <Cloud delay={3} position={50} />
@@ -587,12 +592,12 @@ export function Hero({ onGetStarted }: HeroProps) {
           </>
         )}
 
-        {/* Airplane Animation */}
+        {/* Airplane Animation - Smaller on mobile */}
         {hasLoaded && (
-          <div className="absolute top-10 left-10 plane-entry z-20">
+          <div className="absolute top-4 sm:top-10 left-4 sm:left-10 plane-entry z-20">
             <div className="relative">
-              <Plane size={48} className="text-red-600 transform rotate-45 drop-shadow-2xl" />
-              <div className="absolute -right-20 top-1/2 w-20 h-1 bg-gradient-to-r from-red-600 to-transparent opacity-60"></div>
+              <Plane size={window.innerWidth > 768 ? 48 : 32} className="text-red-600 transform rotate-45 drop-shadow-2xl" />
+              <div className="absolute -right-12 sm:-right-20 top-1/2 w-12 sm:w-20 h-1 bg-gradient-to-r from-red-600 to-transparent opacity-60"></div>
             </div>
           </div>
         )}
@@ -607,103 +612,103 @@ export function Hero({ onGetStarted }: HeroProps) {
           <Confetti key={`confetti-${i}`} delay={i * 0.2 + 2} />
         ))}
 
-        {/* Ambient Glow Effects */}
-        <div className="absolute inset-0 opacity-30 pointer-events-none">
+        {/* Ambient Glow Effects - Reduced on mobile */}
+        <div className="absolute inset-0 opacity-20 md:opacity-30 pointer-events-none">
           <div 
-            className="absolute top-20 left-10 w-96 h-96 bg-red-600 rounded-full blur-3xl"
+            className="absolute top-10 sm:top-20 left-5 sm:left-10 w-64 sm:w-96 h-64 sm:h-96 bg-red-600 rounded-full blur-3xl"
             style={{
-              transform: `translate(${mousePosition.x * 2}px, ${mousePosition.y * 2}px)`,
+              transform: window.innerWidth > 768 ? `translate(${mousePosition.x * 2}px, ${mousePosition.y * 2}px)` : 'none',
               transition: 'transform 0.3s ease-out',
             }}
           ></div>
           <div 
-            className="absolute bottom-20 right-10 w-96 h-96 bg-red-600 rounded-full blur-3xl"
+            className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-red-600 rounded-full blur-3xl"
             style={{
-              transform: `translate(${-mousePosition.x * 2}px, ${-mousePosition.y * 2}px)`,
+              transform: window.innerWidth > 768 ? `translate(${-mousePosition.x * 2}px, ${-mousePosition.y * 2}px)` : 'none',
               transition: 'transform 0.3s ease-out',
             }}
           ></div>
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
-          <div className="mb-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32 text-center">
+          <div className="mb-6 sm:mb-8">
             <img 
               src="/logo.png" 
               alt="Moshi Moshi Nippon" 
-              className={`h-40 w-auto mx-auto mb-6 drop-shadow-2xl ${hasLoaded ? 'logo-land animate-float' : ''}`}
+              className={`h-24 sm:h-32 md:h-40 w-auto mx-auto mb-4 sm:mb-6 drop-shadow-2xl ${hasLoaded ? 'logo-land animate-float' : ''}`}
               style={{
                 filter: 'drop-shadow(0 0 20px rgba(220, 38, 38, 0.8))',
               }}
             />
           </div>
 
-          <h1 className={`text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl ${hasLoaded ? 'slide-in-up delay-1000' : ''}`}>
+          <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 drop-shadow-2xl px-2 ${hasLoaded ? 'slide-in-up delay-1000' : ''}`}>
             Your Gateway to <span className="text-red-600 shimmer-text">Japan</span>
           </h1>
 
-          <p className={`text-2xl md:text-3xl text-white mb-4 font-light drop-shadow-lg ${hasLoaded ? 'slide-in-up delay-1200' : ''}`}>
+          <p className={`text-xl sm:text-2xl md:text-3xl text-white mb-3 sm:mb-4 font-light drop-shadow-lg ${hasLoaded ? 'slide-in-up delay-1200' : ''}`}>
             もしもし にっぽん
           </p>
 
-          <p className={`text-xl text-gray-100 mb-12 max-w-3xl mx-auto drop-shadow-lg glassmorphism px-6 py-4 rounded-xl ${hasLoaded ? 'slide-in-up delay-1400' : ''}`}>
+          <p className={`text-base sm:text-lg md:text-xl text-gray-100 mb-8 sm:mb-12 max-w-3xl mx-auto drop-shadow-lg glassmorphism px-4 sm:px-6 py-3 sm:py-4 rounded-xl ${hasLoaded ? 'slide-in-up delay-1400' : ''}`}>
             Expert visa consultation services for business professionals and students seeking opportunities in Japan.
             We guide you through every step of your journey.
           </p>
 
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center ${hasLoaded ? 'fade-in delay-1600' : ''}`}>
+          <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 ${hasLoaded ? 'fade-in delay-1600' : ''}`}>
             <button
               onClick={onGetStarted}
-              className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-all duration-300 flex items-center justify-center space-x-2 shadow-2xl hover:shadow-red-600/50 animate-pulse-glow transform hover:scale-105 active:scale-95"
+              className="bg-red-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-red-700 transition-all duration-300 flex items-center justify-center space-x-2 shadow-2xl hover:shadow-red-600/50 animate-pulse-glow transform hover:scale-105 active:scale-95"
             >
               <span>Get Started</span>
               <ArrowRight size={20} />
             </button>
             <a
               href="tel:0777807619"
-              className="glassmorphism text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/20 transition-all duration-300 shadow-2xl transform hover:scale-105 active:scale-95"
+              className="glassmorphism text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/20 transition-all duration-300 shadow-2xl transform hover:scale-105 active:scale-95"
             >
               Call Us: 077 780 7619
             </a>
             <button
               onClick={() => setShowGallery(true)}
-              className="glassmorphism text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/20 transition-all duration-300 shadow-2xl flex items-center justify-center space-x-2 transform hover:scale-105 active:scale-95"
+              className="glassmorphism text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/20 transition-all duration-300 shadow-2xl flex items-center justify-center space-x-2 transform hover:scale-105 active:scale-95"
             >
               <Image size={20} />
               <span>Gallery</span>
             </button>
             <a
               href="https://www.facebook.com/mmnippon/reels"
-              className="glassmorphism text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/20 transition-all duration-300 shadow-2xl transform hover:scale-105 active:scale-95"
+              className="glassmorphism text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/20 transition-all duration-300 shadow-2xl transform hover:scale-105 active:scale-95"
             >
               Success stories
             </a>
           </div>
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className={`glassmorphism p-6 rounded-lg border border-red-600/50 hover:border-red-600 transition-all duration-300 transform hover:scale-105 ${hasLoaded ? 'bounce-in delay-2000' : ''}`}>
-              <h3 className="text-3xl font-bold text-red-600 mb-2 drop-shadow-lg">10+</h3>
-              <p className="text-white drop-shadow">Years Experience</p>
+          <div className="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 max-w-4xl mx-auto px-4">
+            <div className={`glassmorphism p-4 sm:p-6 rounded-lg border border-red-600/50 hover:border-red-600 transition-all duration-300 transform hover:scale-105 ${hasLoaded ? 'bounce-in delay-2000' : ''}`}>
+              <h3 className="text-2xl sm:text-3xl font-bold text-red-600 mb-2 drop-shadow-lg">10+</h3>
+              <p className="text-white drop-shadow text-sm sm:text-base">Years Experience</p>
             </div>
-            <div className={`glassmorphism p-6 rounded-lg border border-red-600/50 hover:border-red-600 transition-all duration-300 transform hover:scale-105 ${hasLoaded ? 'bounce-in delay-2200' : ''}`}>
-              <h3 className="text-3xl font-bold text-red-600 mb-2 drop-shadow-lg">100%</h3>
-              <p className="text-white drop-shadow">Successful Applications</p>
+            <div className={`glassmorphism p-4 sm:p-6 rounded-lg border border-red-600/50 hover:border-red-600 transition-all duration-300 transform hover:scale-105 ${hasLoaded ? 'bounce-in delay-2200' : ''}`}>
+              <h3 className="text-2xl sm:text-3xl font-bold text-red-600 mb-2 drop-shadow-lg">100%</h3>
+              <p className="text-white drop-shadow text-sm sm:text-base">Successful Applications</p>
             </div>
-            <div className={`glassmorphism p-6 rounded-lg border border-red-600/50 hover:border-red-600 transition-all duration-300 transform hover:scale-105 ${hasLoaded ? 'bounce-in delay-2400' : ''}`}>
-              <h3 className="text-3xl font-bold text-red-600 mb-2 drop-shadow-lg">100%</h3>
-              <p className="text-white drop-shadow">Client Satisfaction</p>
+            <div className={`glassmorphism p-4 sm:p-6 rounded-lg border border-red-600/50 hover:border-red-600 transition-all duration-300 transform hover:scale-105 ${hasLoaded ? 'bounce-in delay-2400' : ''}`}>
+              <h3 className="text-2xl sm:text-3xl font-bold text-red-600 mb-2 drop-shadow-lg">100%</h3>
+              <p className="text-white drop-shadow text-sm sm:text-base">Client Satisfaction</p>
             </div>
           </div>
 
           {/* Slideshow Indicators */}
-          <div className={`mt-12 flex justify-center gap-3 ${hasLoaded ? 'fade-in delay-2600' : ''}`}>
+          <div className={`mt-8 sm:mt-12 flex justify-center gap-2 sm:gap-3 ${hasLoaded ? 'fade-in delay-2600' : ''}`}>
             {BACKGROUND_IMAGES.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                   index === currentSlide 
-                    ? 'bg-red-600 w-8' 
+                    ? 'bg-red-600 w-6 sm:w-8' 
                     : 'bg-white/50 hover:bg-white/80'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
