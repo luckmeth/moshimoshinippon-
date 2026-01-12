@@ -539,22 +539,27 @@ export function Hero({ onGetStarted }: HeroProps) {
                 index === currentSlide ? 'opacity-100' : 'opacity-0'
               }`}
               style={{
-                transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+                transform: window.innerWidth > 768 ? `translate(${mousePosition.x}px, ${mousePosition.y}px)` : 'none',
                 transition: 'transform 0.3s ease-out',
               }}
             >
-              <img
-                src={img}
-                alt={`Japan ${index + 1}`}
-                className="w-full h-full object-cover object-center"
-                style={{
-                  animation: index === currentSlide ? 'slideshow 6s ease-in-out' : 'none',
-                  objectPosition: 'center center',
-                }}
-                loading={index === 0 ? 'eager' : 'lazy'}
-              />
-              {/* Gradient overlay - stronger on mobile */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90 md:from-black/70 md:via-black/50 md:to-black/80"></div>
+              {/* Picture element for responsive images */}
+              <picture className="w-full h-full">
+                <img
+                  src={img}
+                  alt={`Japan ${index + 1}`}
+                  className="w-full h-full object-cover"
+                  style={{
+                    animation: index === currentSlide ? 'slideshow 6s ease-in-out' : 'none',
+                    objectPosition: 'center center',
+                    objectFit: 'cover',
+                    minHeight: '100vh',
+                  }}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                />
+              </picture>
+              {/* Gradient overlay - lighter for better visibility */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 md:from-black/50 md:via-black/30 md:to-black/60"></div>
             </div>
           ))}
         </div>
@@ -612,17 +617,17 @@ export function Hero({ onGetStarted }: HeroProps) {
           <Confetti key={`confetti-${i}`} delay={i * 0.2 + 2} />
         ))}
 
-        {/* Ambient Glow Effects - Reduced on mobile */}
-        <div className="absolute inset-0 opacity-20 md:opacity-30 pointer-events-none">
+        {/* Ambient Glow Effects - More subtle for better image visibility */}
+        <div className="absolute inset-0 opacity-10 md:opacity-20 pointer-events-none">
           <div 
-            className="absolute top-10 sm:top-20 left-5 sm:left-10 w-64 sm:w-96 h-64 sm:h-96 bg-red-600 rounded-full blur-3xl"
+            className="absolute top-10 sm:top-20 left-5 sm:left-10 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-red-600 rounded-full blur-3xl"
             style={{
               transform: window.innerWidth > 768 ? `translate(${mousePosition.x * 2}px, ${mousePosition.y * 2}px)` : 'none',
               transition: 'transform 0.3s ease-out',
             }}
           ></div>
           <div 
-            className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-red-600 rounded-full blur-3xl"
+            className="absolute bottom-10 sm:bottom-20 right-5 sm:right-10 w-48 sm:w-64 md:w-96 h-48 sm:h-64 md:h-96 bg-red-600 rounded-full blur-3xl"
             style={{
               transform: window.innerWidth > 768 ? `translate(${-mousePosition.x * 2}px, ${-mousePosition.y * 2}px)` : 'none',
               transition: 'transform 0.3s ease-out',
@@ -631,84 +636,84 @@ export function Hero({ onGetStarted }: HeroProps) {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32 text-center">
-          <div className="mb-6 sm:mb-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32 text-center min-h-screen flex flex-col justify-center">
+          <div className="mb-4 sm:mb-6 md:mb-8">
             <img 
               src="/logo.png" 
               alt="Moshi Moshi Nippon" 
-              className={`h-24 sm:h-32 md:h-40 w-auto mx-auto mb-4 sm:mb-6 drop-shadow-2xl ${hasLoaded ? 'logo-land animate-float' : ''}`}
+              className={`h-16 sm:h-24 md:h-32 lg:h-40 w-auto mx-auto mb-3 sm:mb-4 md:mb-6 drop-shadow-2xl ${hasLoaded ? 'logo-land animate-float' : ''}`}
               style={{
                 filter: 'drop-shadow(0 0 20px rgba(220, 38, 38, 0.8))',
               }}
             />
           </div>
 
-          <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 drop-shadow-2xl px-2 ${hasLoaded ? 'slide-in-up delay-1000' : ''}`}>
+          <h1 className={`text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold text-white mb-3 sm:mb-4 md:mb-6 drop-shadow-2xl leading-tight ${hasLoaded ? 'slide-in-up delay-1000' : ''}`}>
             Your Gateway to <span className="text-red-600 shimmer-text">Japan</span>
           </h1>
 
-          <p className={`text-xl sm:text-2xl md:text-3xl text-white mb-3 sm:mb-4 font-light drop-shadow-lg ${hasLoaded ? 'slide-in-up delay-1200' : ''}`}>
+          <p className={`text-lg sm:text-xl md:text-2xl lg:text-3xl text-white mb-2 sm:mb-3 md:mb-4 font-light drop-shadow-lg ${hasLoaded ? 'slide-in-up delay-1200' : ''}`}>
             もしもし にっぽん
           </p>
 
-          <p className={`text-base sm:text-lg md:text-xl text-gray-100 mb-8 sm:mb-12 max-w-3xl mx-auto drop-shadow-lg glassmorphism px-4 sm:px-6 py-3 sm:py-4 rounded-xl ${hasLoaded ? 'slide-in-up delay-1400' : ''}`}>
+          <p className={`text-sm sm:text-base md:text-lg lg:text-xl text-gray-100 mb-6 sm:mb-8 md:mb-12 max-w-3xl mx-auto drop-shadow-lg glassmorphism px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 rounded-xl leading-snug ${hasLoaded ? 'slide-in-up delay-1400' : ''}`}>
             Expert visa consultation services for business professionals and students seeking opportunities in Japan.
             We guide you through every step of your journey.
           </p>
 
-          <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 ${hasLoaded ? 'fade-in delay-1600' : ''}`}>
+          <div className={`flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 justify-center px-2 sm:px-4 ${hasLoaded ? 'fade-in delay-1600' : ''}`}>
             <button
               onClick={onGetStarted}
-              className="bg-red-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-red-700 transition-all duration-300 flex items-center justify-center space-x-2 shadow-2xl hover:shadow-red-600/50 animate-pulse-glow transform hover:scale-105 active:scale-95"
+              className="bg-red-600 text-white px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-lg text-sm sm:text-base font-semibold hover:bg-red-700 transition-all duration-300 flex items-center justify-center space-x-2 shadow-2xl hover:shadow-red-600/50 animate-pulse-glow transform hover:scale-105 active:scale-95"
             >
               <span>Get Started</span>
-              <ArrowRight size={20} />
+              <ArrowRight size={16} className="sm:w-5 sm:h-5" />
             </button>
             <a
               href="tel:0777807619"
-              className="glassmorphism text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/20 transition-all duration-300 shadow-2xl transform hover:scale-105 active:scale-95"
+              className="glassmorphism text-white px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-lg text-sm sm:text-base font-semibold hover:bg-white/20 transition-all duration-300 shadow-2xl transform hover:scale-105 active:scale-95"
             >
-              Call Us: 077 780 7619
+              Call: 077 780 7619
             </a>
             <button
               onClick={() => setShowGallery(true)}
-              className="glassmorphism text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/20 transition-all duration-300 shadow-2xl flex items-center justify-center space-x-2 transform hover:scale-105 active:scale-95"
+              className="glassmorphism text-white px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-lg text-sm sm:text-base font-semibold hover:bg-white/20 transition-all duration-300 shadow-2xl flex items-center justify-center space-x-2 transform hover:scale-105 active:scale-95"
             >
-              <Image size={20} />
+              <Image size={16} className="sm:w-5 sm:h-5" />
               <span>Gallery</span>
             </button>
             <a
               href="https://www.facebook.com/mmnippon/reels"
-              className="glassmorphism text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/20 transition-all duration-300 shadow-2xl transform hover:scale-105 active:scale-95"
+              className="glassmorphism text-white px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-lg text-sm sm:text-base font-semibold hover:bg-white/20 transition-all duration-300 shadow-2xl transform hover:scale-105 active:scale-95"
             >
-              Success stories
+              Success Stories
             </a>
           </div>
 
-          <div className="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 max-w-4xl mx-auto px-4">
-            <div className={`glassmorphism p-4 sm:p-6 rounded-lg border border-red-600/50 hover:border-red-600 transition-all duration-300 transform hover:scale-105 ${hasLoaded ? 'bounce-in delay-2000' : ''}`}>
-              <h3 className="text-2xl sm:text-3xl font-bold text-red-600 mb-2 drop-shadow-lg">10+</h3>
-              <p className="text-white drop-shadow text-sm sm:text-base">Years Experience</p>
+          <div className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-8 max-w-4xl mx-auto px-2 sm:px-4">
+            <div className={`glassmorphism p-3 sm:p-4 md:p-6 rounded-lg border border-red-600/50 hover:border-red-600 transition-all duration-300 transform hover:scale-105 ${hasLoaded ? 'bounce-in delay-2000' : ''}`}>
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-red-600 mb-1 sm:mb-2 drop-shadow-lg">10+</h3>
+              <p className="text-white drop-shadow text-xs sm:text-sm md:text-base">Years Experience</p>
             </div>
-            <div className={`glassmorphism p-4 sm:p-6 rounded-lg border border-red-600/50 hover:border-red-600 transition-all duration-300 transform hover:scale-105 ${hasLoaded ? 'bounce-in delay-2200' : ''}`}>
-              <h3 className="text-2xl sm:text-3xl font-bold text-red-600 mb-2 drop-shadow-lg">100%</h3>
-              <p className="text-white drop-shadow text-sm sm:text-base">Successful Applications</p>
+            <div className={`glassmorphism p-3 sm:p-4 md:p-6 rounded-lg border border-red-600/50 hover:border-red-600 transition-all duration-300 transform hover:scale-105 ${hasLoaded ? 'bounce-in delay-2200' : ''}`}>
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-red-600 mb-1 sm:mb-2 drop-shadow-lg">100%</h3>
+              <p className="text-white drop-shadow text-xs sm:text-sm md:text-base">Successful Applications</p>
             </div>
-            <div className={`glassmorphism p-4 sm:p-6 rounded-lg border border-red-600/50 hover:border-red-600 transition-all duration-300 transform hover:scale-105 ${hasLoaded ? 'bounce-in delay-2400' : ''}`}>
-              <h3 className="text-2xl sm:text-3xl font-bold text-red-600 mb-2 drop-shadow-lg">100%</h3>
-              <p className="text-white drop-shadow text-sm sm:text-base">Client Satisfaction</p>
+            <div className={`glassmorphism p-3 sm:p-4 md:p-6 rounded-lg border border-red-600/50 hover:border-red-600 transition-all duration-300 transform hover:scale-105 ${hasLoaded ? 'bounce-in delay-2400' : ''}`}>
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-red-600 mb-1 sm:mb-2 drop-shadow-lg">100%</h3>
+              <p className="text-white drop-shadow text-xs sm:text-sm md:text-base">Client Satisfaction</p>
             </div>
           </div>
 
           {/* Slideshow Indicators */}
-          <div className={`mt-8 sm:mt-12 flex justify-center gap-2 sm:gap-3 ${hasLoaded ? 'fade-in delay-2600' : ''}`}>
+          <div className={`mt-6 sm:mt-8 md:mt-12 flex justify-center gap-2 sm:gap-3 ${hasLoaded ? 'fade-in delay-2600' : ''}`}>
             {BACKGROUND_IMAGES.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                   index === currentSlide 
-                    ? 'bg-red-600 w-6 sm:w-8' 
+                    ? 'bg-red-600 w-5 sm:w-6 md:w-8' 
                     : 'bg-white/50 hover:bg-white/80'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
