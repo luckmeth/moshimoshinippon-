@@ -270,7 +270,7 @@ export function Navbar({ onNavigate }: NavbarProps) {
                 style={{ transitionDelay: `${navItems.length * 50}ms` }}
               >
                 <Shield size={18} />
-                <span>Admin Panel</span>
+                <span>Privileges</span>
                 <Sparkles size={14} className="animate-twinkle" />
               </button>
 
@@ -281,10 +281,10 @@ export function Navbar({ onNavigate }: NavbarProps) {
               style={{ transitionDelay: `${(navItems.length + 1) * 50}ms` }}>
                 <div className="flex items-center justify-center space-x-2">
                   <Sparkles size={16} className="text-red-600 animate-twinkle" />
-                  <span className="text-white text-sm font-semibold">Happy New Year 2025!</span>
+                  <span className="text-white text-sm font-semibold">Journey to Japan starts here... </span>
                   <Sparkles size={16} className="text-red-600 animate-twinkle" />
                 </div>
-                <p className="text-gray-300 text-xs mt-1">新年おめでとうございます</p>
+                <p className="text-gray-300 text-xs mt-1">日本への旅はここから始まります...</p>
               </div>
             </div>
           </div>
