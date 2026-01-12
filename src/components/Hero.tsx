@@ -638,18 +638,18 @@ export function Hero({ onGetStarted }: HeroProps) {
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32 text-center min-h-screen flex flex-col justify-center">
           <div className="mb-4 sm:mb-6 md:mb-8 pt-8 sm:pt-4">
-  <img 
-    src="/logo.png" 
-    alt="Moshi Moshi Nippon" 
-    className={`h-20 sm:h-24 md:h-32 lg:h-40 w-20 sm:w-24 md:w-32 lg:w-40 mx-auto mb-3 sm:mb-4 md:mb-6 drop-shadow-2xl rounded-full object-cover ${hasLoaded ? 'logo-land animate-float' : ''}`}
-    style={{
-      filter: 'drop-shadow(0 0 20px rgba(220, 38, 38, 0.8))',
-      border: '4px solid #000',
-      padding: '8px',
-      backgroundColor: '#000',
-    }}
-  />
-</div>
+            <img 
+            src="/logo.png" 
+            alt="Moshi Moshi Nippon" 
+            className={`h-20 sm:h-24 md:h-32 lg:h-40 w-20 sm:w-24 md:w-32 lg:w-40 mx-auto mb-3 sm:mb-4 md:mb-6 drop-shadow-2xl rounded-full object-cover ${hasLoaded ? 'logo-land animate-float' : ''}`}
+            style={{
+              filter: 'drop-shadow(0 0 20px rgba(220, 38, 38, 0.8))',
+              border: '1px solid #000',
+              padding: '8px',
+              backgroundColor: '#000',
+            }}
+            />
+          </div>
 
           <h1 className={`text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold text-white mb-3 sm:mb-4 md:mb-6 drop-shadow-2xl leading-tight ${hasLoaded ? 'slide-in-up delay-1000' : ''}`}>
             Your Gateway to <span className="text-red-600 shimmer-text">Japan</span>
