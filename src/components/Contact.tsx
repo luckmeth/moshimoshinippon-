@@ -1,10 +1,39 @@
-import { Mail, Phone, MapPin, Facebook, Instagram, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Instagram, Send, Play, Pause } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { supabase } from '../lib/supabase';
 
 interface ContactProps {
   onConsultationClick: () => void;
 }
 
 export function Contact({ onConsultationClick }: ContactProps) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [videoError, setVideoError] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Set video URL directly
+  useEffect(() => {
+    // Direct URL from Supabase storage
+    setVideoUrl('https://ogmpepikyubcptjrwtgi.supabase.co/storage/v1/object/public/ai/0112.mp4');
+  }, []);
+
+  const togglePlayPause = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleVideoError = () => {
+    console.error('Video failed to load');
+    setVideoError(true);
+  };
+
   return (
     <section id="contact" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -97,14 +126,44 @@ export function Contact({ onConsultationClick }: ContactProps) {
 
           <div className="bg-gradient-to-br from-black to-gray-900 p-8 rounded-xl border-2 border-red-600">
             <h3 className="text-3xl font-bold text-white mb-6">Request a Consultation</h3> 
-            <p className="text-gray-300 mb-8"> Fill out our consultation form and our team will get back to you within 24 hours to discuss your visa needs.</p>
-            <div className="mt-8 rounded-lg overflow-hidden border-2 border-red-600">
-              <img
-                src="ds.png"
-                alt="Buddima Ishara Ramanayake - Senior Visa Consultant"
-                className="w-full h-80 object-cover"
-              />
+            <p className="text-gray-300 mb-8">Fill out our consultation form and our team will get back to you within 24 hours to discuss your visa needs.</p>
+            
+            {/* Video Player */}
+            <div className="mt-8 rounded-lg overflow-hidden border-2 border-red-600 relative group shadow-2xl">
+              {!videoError && videoUrl ? (
+                <>
+                  <video
+                    ref={videoRef}
+                    className="w-full h-80 object-cover"
+                    poster="ds.png"
+                    onError={handleVideoError}
+                    onPlay={() => setIsPlaying(true)}
+                    onPause={() => setIsPlaying(false)}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  >
+                    <source src={videoUrl} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  
+                  {/* Subtle overlay indicator */}
+                  <div className="absolute top-4 right-4 bg-red-600/80 backdrop-blur-sm px-3 py-1 rounded-full flex items-center gap-2">
+                    <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                    <span className="text-white text-xs font-semibold">LIVE</span>
+                  </div>
+                </>
+              ) : (
+                /* Fallback to image if video fails to load */
+                <img
+                  src="ds.png"
+                  alt="Buddima Ishara Ramanayake - Senior Visa Consultant"
+                  className="w-full h-80 object-cover"
+                />
+              )}
             </div>
+            
             <br />
             <p className="text-gray-300 mb-8">
               Led by Buddima Ishara Ramanayake
@@ -125,8 +184,6 @@ Once selected, you'll face an online interview, and only then does the visa proc
             >
               Start Your Application
             </button>
-            
-            
           </div>
         </div>
 
