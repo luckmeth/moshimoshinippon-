@@ -14,12 +14,12 @@ interface GalleryImage {
   created_at: string;
 }
 
-// Background slideshow images
+// Background slideshow images from Supabase Storage
 const BACKGROUND_IMAGES = [
-  '/public/jap1.jpg',
-  '/public/jap2.jpg',
-  '/public/jap3.jpg',
-  '/public/jap4.jpg',
+  'https://ogmpepikyubcptjrwtgi.supabase.co/storage/v1/object/public/ai/herox%20phots/jap1.jpg',
+  'https://ogmpepikyubcptjrwtgi.supabase.co/storage/v1/object/public/ai/herox%20phots/jap2.jpg',
+  'https://ogmpepikyubcptjrwtgi.supabase.co/storage/v1/object/public/ai/herox%20phots/jap3.jpg',
+  'https://ogmpepikyubcptjrwtgi.supabase.co/storage/v1/object/public/ai/herox%20phots/jap4.jpg'
 ];
 
 // Firework particle component
