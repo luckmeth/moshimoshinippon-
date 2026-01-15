@@ -243,62 +243,62 @@ export function Services() {
   const currentContent = language ? content[language] : content.en;
 
   return (
-    <section id="services" className="py-24 bg-white">
-      {/* Language Selection Popup */}
+    <section id="services" className="py-12 sm:py-16 md:py-24 bg-white">
+      {/* Language Selection Popup - Mobile Responsive */}
       {showLangSelector && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 backdrop-blur-sm">
-          <div className="bg-gradient-to-br from-black via-gray-900 to-red-900 p-10 rounded-2xl border-4 border-red-600 shadow-2xl max-w-md w-full mx-4">
-            <div className="text-center mb-8">
-              <Globe className="text-red-600 w-20 h-20 mx-auto mb-4 animate-pulse" />
-              <h3 className="text-3xl font-bold text-white mb-2">
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 backdrop-blur-sm p-4">
+          <div className="bg-gradient-to-br from-black via-gray-900 to-red-900 p-6 sm:p-8 md:p-10 rounded-2xl border-2 sm:border-4 border-red-600 shadow-2xl max-w-md w-full">
+            <div className="text-center mb-6 sm:mb-8">
+              <Globe className="text-red-600 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-3 sm:mb-4 animate-pulse" />
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
                 Choose Your Language
               </h3>
-              <p className="text-2xl font-bold text-white mb-2">
+              <p className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2">
                 ඔබේ භාෂාව තෝරන්න
               </p>
-              <p className="text-2xl font-bold text-white mb-4">
+              <p className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4">
                 言語を選択してください
               </p>
-              <div className="h-1 w-24 bg-red-600 mx-auto rounded-full"></div>
+              <div className="h-1 w-16 sm:w-24 bg-red-600 mx-auto rounded-full"></div>
             </div>
             
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <button
                 onClick={() => selectLanguage('en')}
-                className="w-full bg-white hover:bg-red-600 text-black hover:text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl border-2 border-transparent hover:border-white flex items-center justify-center space-x-3"
+                className="w-full bg-white hover:bg-red-600 text-black hover:text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl border-2 border-transparent hover:border-white flex items-center justify-center space-x-2 sm:space-x-3"
               >
-                <span className="text-3xl">🇬🇧</span>
-                <span className="text-xl">English</span>
+                <span className="text-2xl sm:text-3xl">🇬🇧</span>
+                <span className="text-lg sm:text-xl">English</span>
               </button>
               
               <button
                 onClick={() => selectLanguage('si')}
-                className="w-full bg-white hover:bg-red-600 text-black hover:text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl border-2 border-transparent hover:border-white flex items-center justify-center space-x-3"
+                className="w-full bg-white hover:bg-red-600 text-black hover:text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl border-2 border-transparent hover:border-white flex items-center justify-center space-x-2 sm:space-x-3"
               >
-                <span className="text-3xl">🇱🇰</span>
-                <span className="text-xl">සිංහල</span>
+                <span className="text-2xl sm:text-3xl">🇱🇰</span>
+                <span className="text-lg sm:text-xl">සිංහල</span>
               </button>
               
               <button
                 onClick={() => selectLanguage('ja')}
-                className="w-full bg-white hover:bg-red-600 text-black hover:text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl border-2 border-transparent hover:border-white flex items-center justify-center space-x-3"
+                className="w-full bg-white hover:bg-red-600 text-black hover:text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl border-2 border-transparent hover:border-white flex items-center justify-center space-x-2 sm:space-x-3"
               >
-                <span className="text-3xl">🇯🇵</span>
-                <span className="text-xl">日本語</span>
+                <span className="text-2xl sm:text-3xl">🇯🇵</span>
+                <span className="text-lg sm:text-xl">日本語</span>
               </button>
             </div>
             
-            <p className="text-gray-300 text-center mt-6 text-sm">
+            <p className="text-gray-300 text-center mt-4 sm:mt-6 text-xs sm:text-sm">
               Select your preferred language to continue
             </p>
           </div>
         </div>
       )}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="flex justify-center items-center gap-4 mb-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-black">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <div className="flex justify-center items-center gap-2 sm:gap-4 mb-3 sm:mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black">
               {language === 'si' ? (
                 <>අපගේ <span className="text-red-600">සේවා</span></>
               ) : language === 'ja' ? (
@@ -310,19 +310,19 @@ export function Services() {
             {language && (
               <button
                 onClick={changeLanguage}
-                className="bg-red-600 hover:bg-red-700 text-white p-3 rounded-lg transition-all duration-300 hover:scale-110"
+                className="bg-red-600 hover:bg-red-700 text-white p-2 sm:p-3 rounded-lg transition-all duration-300 hover:scale-110"
                 title={language === 'en' ? 'Change Language' : language === 'si' ? 'භාෂාව වෙනස් කරන්න' : '言語を変更'}
               >
-                <Globe size={24} />
+                <Globe size={20} className="sm:w-6 sm:h-6" />
               </button>
             )}
           </div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-2">
             {currentContent.subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {Object.entries(currentContent.services).map(([key, service]) => {
             const icons: Record<string, any> = {
               business: Briefcase,
@@ -337,26 +337,26 @@ export function Services() {
             return (
               <div
                 key={key}
-                className="group bg-black p-8 rounded-xl border-2 border-red-600 hover:shadow-2xl hover:shadow-red-600/30 transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+                className="group bg-black p-4 sm:p-6 md:p-8 rounded-xl border-2 border-red-600 hover:shadow-2xl hover:shadow-red-600/30 transition-all duration-300 hover:-translate-y-2 cursor-pointer"
                 onClick={() => toggleExpand(key)}
               >
-                <div className="bg-red-600 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Icon className="text-white" size={32} />
+                <div className="bg-red-600 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <Icon className="text-white" size={24} />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4">
                   {service.title}
                 </h3>
-                <p className="text-gray-300 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
                   {service.description}
                 </p>
 
                 {expandedId === key && (
-                  <div className="mt-6 p-4 bg-red-700 rounded-md text-white transition-all duration-500 ease-in-out">
+                  <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-red-700 rounded-md text-white transition-all duration-500 ease-in-out">
                     <ul className="space-y-2">
                       {service.details.map((detail: string, idx: number) => (
                         <li key={idx} className="flex items-start">
-                          <span className="text-yellow-400 mr-2">✦</span>
-                          <span className="text-sm">{detail}</span>
+                          <span className="text-yellow-400 mr-2 flex-shrink-0">✦</span>
+                          <span className="text-xs sm:text-sm">{detail}</span>
                         </li>
                       ))}
                     </ul>
