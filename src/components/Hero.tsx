@@ -19,7 +19,13 @@ const BACKGROUND_IMAGES = [
   'https://ogmpepikyubcptjrwtgi.supabase.co/storage/v1/object/public/ai/herox%20phots/jap1.jpg',
   'https://ogmpepikyubcptjrwtgi.supabase.co/storage/v1/object/public/ai/herox%20phots/jap2.jpg',
   'https://ogmpepikyubcptjrwtgi.supabase.co/storage/v1/object/public/ai/herox%20phots/jap3.jpg',
+  'https://ogmpepikyubcptjrwtgi.supabase.co/storage/v1/object/public/ai/herox%20phots/j1.jpg',
+  'https://ogmpepikyubcptjrwtgi.supabase.co/storage/v1/object/public/ai/herox%20phots/j2.jpg',
+  'https://ogmpepikyubcptjrwtgi.supabase.co/storage/v1/object/public/ai/herox%20phots/j3.jpg',
+  'https://ogmpepikyubcptjrwtgi.supabase.co/storage/v1/object/public/ai/herox%20phots/j4.jpg',
+  'https://ogmpepikyubcptjrwtgi.supabase.co/storage/v1/object/public/ai/herox%20phots/j5.jpg',
   'https://ogmpepikyubcptjrwtgi.supabase.co/storage/v1/object/public/ai/herox%20phots/jap4.jpg'
+  
 ];
 
 // Firework particle component
@@ -641,7 +647,7 @@ export function Hero({ onGetStarted }: HeroProps) {
             <img 
             src="/logo.png" 
             alt="Moshi Moshi Nippon" 
-            className={`h-20 sm:h-24 md:h-32 lg:h-40 w-20 sm:w-24 md:w-32 lg:w-40 mx-auto mb-3 sm:mb-4 md:mb-6 drop-shadow-2xl rounded-full object-cover ${hasLoaded ? 'logo-land animate-float' : ''}`}
+            className={`h-28 sm:h-32 md:h-36 lg:h-44 mx-auto mb-3 sm:mb-4 md:mb-6 drop-shadow-2xl rounded-full object-cover ${hasLoaded ? 'logo-land animate-float' : ''}`}
             style={{
               filter: 'drop-shadow(0 0 20px rgba(220, 38, 38, 0.8))',
               border: '1px solid #000',

@@ -128,6 +128,7 @@ export function InquiryForm({ onClose }: InquiryFormProps) {
               <option value="business">Business Visa</option>
               <option value="student">Student Visa</option>
               <option value="intra-company">Intra-Company Transfer</option>
+               <option value="intra-company">EHS Visa Under HSP</option>
               <option value="dependent">Dependent Visa</option>
               <option value="other">Other</option>
             </select>
