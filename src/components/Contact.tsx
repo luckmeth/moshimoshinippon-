@@ -15,7 +15,7 @@ export function Contact({ onConsultationClick }: ContactProps) {
   // Set video URL directly
   useEffect(() => {
     // Direct URL from Supabase storage
-    setVideoUrl('https://ogmpepikyubcptjrwtgi.supabase.co/storage/v1/object/public/ai/0112.mp4');
+    setVideoUrl('');
   }, []);
 
   const togglePlayPause = () => {
