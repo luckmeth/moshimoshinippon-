@@ -31,8 +31,10 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://moshimoshinippon.com" />
 
-    <!-- Alternate Languages (if you add Sinhala/Tamil) -->
+    <!-- Alternate Languages -->
     <link rel="alternate" hreflang="en" href="https://moshimoshinippon.com" />
+    <link rel="alternate" hreflang="ja" href="https://moshimoshinippon.com" />
+    <link rel="alternate" hreflang="si" href="https://moshimoshinippon.com" />
     <link rel="alternate" hreflang="x-default" href="https://moshimoshinippon.com" />
 
     <!-- Open Graph / Facebook -->
@@ -257,16 +259,44 @@
     <!-- DNS Prefetch for Performance -->
     <link rel="dns-prefetch" href="//www.google-analytics.com" />
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//translate.google.com" />
+    <link rel="dns-prefetch" href="//translate.googleapis.com" />
     
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://translate.googleapis.com" />
 
     <!-- Performance & SEO Enhancers -->
     <link rel="preload" href="/src/main.tsx" as="script" />
+
+    <!-- Google Translate Styles -->
+    <style>
+      body {
+        top: 0 !important;
+      }
+      .skiptranslate {
+        display: none !important;
+      }
+      .goog-te-banner-frame {
+        display: none !important;
+      }
+      .goog-te-banner-frame.skiptranslate {
+        display: none !important;
+      }
+      body {
+        top: 0px !important;
+      }
+      #google_translate_element {
+        display: none;
+      }
+    </style>
   </head>
 
   <body>
+    <!-- Google Translate Element (Hidden) -->
+    <div id="google_translate_element" style="display:none;"></div>
+
     <!-- Hidden SEO content for better keyword indexing -->
     <div style="display:none;">
       <h1>Japan Visa Sri Lanka - Moshi Moshi Nippon Visa Consultants</h1>
@@ -275,5 +305,21 @@
     
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Google Translate Script - Load after DOM -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'en,ja,si,ta',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+        
+        // Notify that Google Translate is ready
+        window.googleTranslateReady = true;
+        window.dispatchEvent(new Event('googleTranslateReady'));
+      }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   </body>
 </html>
