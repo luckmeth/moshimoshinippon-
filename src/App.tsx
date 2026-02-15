@@ -1,20 +1,23 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { AuthProvider } from './contexts/AuthContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { AdvertisingSection } from './components/AdvertisingSection';
-import { Services } from './components/Services';
+import { Services as MainServices } from './components/Services';
 import { About } from './components/About';
 import { Contact } from './components/Contact';
 import { InquiryForm } from './components/InquiryForm';
 import { Chatbot, ChatButton } from './components/Chatbot';
+import { LanguageSelector } from './components/LanguageSelector';
 import { AdminLogin, isAdminAuthenticated, adminLogout } from './components/admin/AdminLogin';
 import { AdminDashboard } from './components/admin/AdminDashboard';
+import TourBuilder from './components/TourBuilder';
 
 function MainContent() {
   const [showInquiryForm, setShowInquiryForm] = useState(false);
   const [showChatbot, setShowChatbot] = useState(false);
   const [isAdminAuth, setIsAdminAuth] = useState(false);
+  const [currentView, setCurrentView] = useState('main');
   
   const homeRef = useRef<HTMLDivElement>(null);
   const advertisingRef = useRef<HTMLDivElement>(null);
@@ -25,9 +28,67 @@ function MainContent() {
   useEffect(() => {
     // Check if admin is already authenticated
     setIsAdminAuth(isAdminAuthenticated());
+    
+    // Check URL for routing
+    const path = window.location.pathname;
+    if (path === '/services') {
+      setCurrentView('services');
+    } else if (path === '/tours') {
+      setCurrentView('tours');
+    }
+    
+    // Handle browser back/forward buttons
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      if (path === '/services') {
+        setCurrentView('services');
+      } else if (path === '/tours') {
+        setCurrentView('tours');
+      } else {
+        setCurrentView('main');
+      }
+    };
+    
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
+  const navigateToView = (view: string) => {
+    setCurrentView(view);
+    if (view === 'services') {
+      window.history.pushState(null, '', '/services');
+    } else if (view === 'tours') {
+      window.history.pushState(null, '', '/tours');
+    } else {
+      window.history.pushState(null, '', '/');
+    }
+  };
+
   const handleNavigate = (section: string) => {
+    // Handle special navigation to new views
+    if (section === 'visa-services') {
+      navigateToView('services');
+      return;
+    }
+    if (section === 'tour-builder') {
+      navigateToView('tours');
+      return;
+    }
+    
+    // Ensure we're on the main view for section navigation
+    if (currentView !== 'main') {
+      navigateToView('main');
+      // Wait for the view to change before scrolling
+      setTimeout(() => {
+        handleSectionScroll(section);
+      }, 100);
+      return;
+    }
+    
+    handleSectionScroll(section);
+  };
+
+  const handleSectionScroll = (section: string) => {
     let ref;
     switch (section) {
       case 'home':
@@ -49,7 +110,9 @@ function MainContent() {
         return;
     }
 
-    ref.current?.scrollIntoView({ behavior: 'smooth' });
+    if (ref?.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleAdminLoginSuccess = () => {
@@ -69,12 +132,91 @@ function MainContent() {
     return <AdminDashboard onLogout={handleAdminLogout} />;
   }
 
+  // Render different views based on current view
+  if (currentView === 'services') {
+    return (
+      <div className="min-h-screen">
+        {/* Language Selector */}
+        <LanguageSelector />
+        
+        <div className="bg-gradient-to-r from-black via-red-950 to-black shadow-lg sticky top-0 z-50 border-b-4 border-red-600">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div className="flex items-center justify-between">
+              <button
+                onClick={() => navigateToView('main')}
+                className="flex items-center space-x-3 text-white hover:text-red-200 transition-colors"
+              >
+                <img src="/logo.png" alt="Moshi Moshi Nippon" className="h-10 w-auto" />
+                <div>
+                  <h1 className="text-lg font-bold">Moshi Moshi Nippon</h1>
+                  <p className="text-xs text-red-200">もしもし にっぽん</p>
+                </div>
+              </button>
+              <button
+                onClick={() => navigateToView('tours')}
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
+              >
+                Tour Builder
+              </button>
+            </div>
+          </div>
+        </div>
+        <Services />
+      </div>
+    );
+  }
+
+  if (currentView === 'tours') {
+    return (
+      <div className="min-h-screen">
+        {/* Language Selector */}
+        <LanguageSelector />
+        
+        <div className="bg-gradient-to-r from-black via-red-950 to-black shadow-lg sticky top-0 z-50 border-b-4 border-red-600">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div className="flex items-center justify-between">
+              <button
+                onClick={() => navigateToView('main')}
+                className="flex items-center space-x-3 text-white hover:text-red-200 transition-colors"
+              >
+                <img src="/logo.png" alt="Moshi Moshi Nippon" className="h-10 w-auto" />
+                <div>
+                  <h1 className="text-lg font-bold">Moshi Moshi Nippon</h1>
+                  <p className="text-xs text-red-200">もしもし にっぽん</p>
+                </div>
+              </button>
+              <button
+                onClick={() => navigateToView('services')}
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
+              >
+                Visa Services
+              </button>
+            </div>
+          </div>
+        </div>
+        <TourBuilder />
+      </div>
+    );
+  }
+
+  // Main view (default)
   return (
     <div className="min-h-screen bg-white">
-      <Navbar onNavigate={handleNavigate} />
+      {/* Language Selector - Shows on all pages */}
+      <LanguageSelector />
+      
+      <Navbar 
+        onNavigate={handleNavigate}
+        onVisaServices={() => navigateToView('services')}
+        onTourBuilder={() => navigateToView('tours')}
+      />
 
       <div ref={homeRef}>
-        <Hero onGetStarted={() => setShowInquiryForm(true)} />
+        <Hero 
+          onGetStarted={() => setShowInquiryForm(true)}
+          onVisaServices={() => navigateToView('services')}
+          onTourBuilder={() => navigateToView('tours')}
+        />
       </div>
 
       <div ref={advertisingRef}>
@@ -82,7 +224,7 @@ function MainContent() {
       </div>
 
       <div ref={servicesRef}>
-        <Services />
+        <MainServices />
       </div>
 
       <div ref={aboutRef}>
