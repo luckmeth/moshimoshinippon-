@@ -11,7 +11,6 @@ import { Chatbot, ChatButton } from './components/Chatbot';
 import { LanguageSelector } from './components/LanguageSelector';
 import { AdminLogin, isAdminAuthenticated, adminLogout } from './components/admin/AdminLogin';
 import { AdminDashboard } from './components/admin/AdminDashboard';
-import TourBuilder from './components/TourBuilder';
 
 function MainContent() {
   const [showInquiryForm, setShowInquiryForm] = useState(false);
@@ -33,8 +32,6 @@ function MainContent() {
     const path = window.location.pathname;
     if (path === '/services') {
       setCurrentView('services');
-    } else if (path === '/tours') {
-      setCurrentView('tours');
     }
     
     // Handle browser back/forward buttons
@@ -42,8 +39,6 @@ function MainContent() {
       const path = window.location.pathname;
       if (path === '/services') {
         setCurrentView('services');
-      } else if (path === '/tours') {
-        setCurrentView('tours');
       } else {
         setCurrentView('main');
       }
@@ -57,8 +52,6 @@ function MainContent() {
     setCurrentView(view);
     if (view === 'services') {
       window.history.pushState(null, '', '/services');
-    } else if (view === 'tours') {
-      window.history.pushState(null, '', '/tours');
     } else {
       window.history.pushState(null, '', '/');
     }
@@ -68,10 +61,6 @@ function MainContent() {
     // Handle special navigation to new views
     if (section === 'visa-services') {
       navigateToView('services');
-      return;
-    }
-    if (section === 'tour-builder') {
-      navigateToView('tours');
       return;
     }
     
@@ -152,49 +141,10 @@ function MainContent() {
                   <p className="text-xs text-red-200">もしもし にっぽん</p>
                 </div>
               </button>
-              <button
-                onClick={() => navigateToView('tours')}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
-              >
-                Tour Builder
-              </button>
             </div>
           </div>
         </div>
-        <Services />
-      </div>
-    );
-  }
-
-  if (currentView === 'tours') {
-    return (
-      <div className="min-h-screen">
-        {/* Language Selector */}
-        <LanguageSelector />
-        
-        <div className="bg-gradient-to-r from-black via-red-950 to-black shadow-lg sticky top-0 z-50 border-b-4 border-red-600">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex items-center justify-between">
-              <button
-                onClick={() => navigateToView('main')}
-                className="flex items-center space-x-3 text-white hover:text-red-200 transition-colors"
-              >
-                <img src="/logo.png" alt="Moshi Moshi Nippon" className="h-10 w-auto" />
-                <div>
-                  <h1 className="text-lg font-bold">Moshi Moshi Nippon</h1>
-                  <p className="text-xs text-red-200">もしもし にっぽん</p>
-                </div>
-              </button>
-              <button
-                onClick={() => navigateToView('services')}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
-              >
-                Visa Services
-              </button>
-            </div>
-          </div>
-        </div>
-        <TourBuilder />
+        <MainServices />
       </div>
     );
   }
@@ -208,14 +158,12 @@ function MainContent() {
       <Navbar 
         onNavigate={handleNavigate}
         onVisaServices={() => navigateToView('services')}
-        onTourBuilder={() => navigateToView('tours')}
       />
 
       <div ref={homeRef}>
         <Hero 
           onGetStarted={() => setShowInquiryForm(true)}
           onVisaServices={() => navigateToView('services')}
-          onTourBuilder={() => navigateToView('tours')}
         />
       </div>
 
