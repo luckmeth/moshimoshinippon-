@@ -172,7 +172,7 @@ export function Services() {
                       <div className="mt-4 lg:mt-6">
                         <button className="bg-yellow-400 hover:bg-yellow-500 text-red-900 font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2 mx-auto lg:mx-0">
                           <Plane className="w-5 h-5" />
-                          Explore Tours
+                          Comming Soon...
                         </button>
                       </div>
                     )}
